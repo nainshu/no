@@ -1,4 +1,3 @@
-
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
