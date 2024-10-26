@@ -167,6 +167,22 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/
 end
 })
 Tab:AddButton({
+	Name = "引导之光桶",
+	Callback = function()
+
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/04d7dd5e02688624b958b8c2604b924c/raw/9e86b34249f44ed2dd433176e67daaf3db30cde8/MoonBottle'))()
+
+end
+})
+Tab:AddButton({
+	Name = "恶作剧之光桶",
+	Callback = function()
+
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/8b05c837bea9effac2554340465b4be1/raw/3f3be0ee72e7f153db39a16a40fa63dce6cde72d/SpiralBottle'))()
+
+end
+})
+Tab:AddButton({
 	Name = "大举办",
 	Callback = function()
 
