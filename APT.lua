@@ -22,7 +22,7 @@ local about = Window:MakeTab({
 
 about:AddParagraph("您的用户名:"," "..game.Players.LocalPlayer.Name.."")
 about:AddParagraph("您的注入器:"," "..identifyexecutor().."")
-about:AddParagraph("您当前服务器的ID"," "..game.GameId.."")
+about:AddParagraph("官方Q群"," "..599298896.."")
 
 local Tab = Window:MakeTab({
   Name = "DOORS脚本",
@@ -551,6 +551,19 @@ local sound = Instance.new("Sound")
     sound.SoundId = "rbxassetid://142376088"
     sound.Parent = game.Workspace
     sound:Play()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "The haunt",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "The haunt速通",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/TheHaunt"))()
 
 end
 })
