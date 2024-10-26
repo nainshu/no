@@ -422,3 +422,29 @@ loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "后悔电梯",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "47后悔电梯",
+	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/heads/main/jhgbtfb.lua'))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "［NEW］鱼",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "47全自动钓鱼",
+	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/heads/main/fish%20auto'))()
+
+end
+})
