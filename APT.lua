@@ -618,6 +618,17 @@ local sound = Instance.new("Sound")
 
 end
 })
+Tab:AddButton({
+	Name = "你看到的我",
+	Callback = function()
+
+local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://13224310294"
+    sound.Parent = game.Workspace
+    sound:Play()
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "The haunt",
   Icon = "rbxassetid://4483345998",
