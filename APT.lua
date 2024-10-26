@@ -687,3 +687,16 @@ loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "模仿者",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "模仿者万圣节",
+	Callback = function()
+
+loadstring(game:HttpGet"https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/main.txt")()
+
+end
+})
