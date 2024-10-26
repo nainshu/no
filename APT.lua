@@ -631,3 +631,48 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/mai
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "情云脚本专区",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "情云内脏与黑火药",
+	Callback = function()
+
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\67\104\105\110\97\81\89\47\83\99\114\105\112\116\115\47\77\97\105\110\47\71\66"))()
+
+end
+})
+Tab:AddButton({
+	Name = "floor2脚本",
+	Callback = function()
+
+loadstring(game:HttpGet("https://github.com/DocYogurt/Main/raw/main/Scripts/DF2RW.lua"))()
+
+end
+})
+Tab:AddButton({
+	Name = "压力万圣节脚本",
+	Callback = function()
+
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\67\104\105\110\97\81\89\47\83\99\114\105\112\116\115\47\77\97\105\110\47\80\114\101\115\115\117\114\101"))()
+
+end
+})
+Tab:AddButton({
+	Name = "压力脚本",
+	Callback = function()
+
+loadstring(game:HttpGet(('https://github.com/DocYogurt/Main/raw/main/Scripts/Pressure')))()
+
+end
+})
+Tab:AddButton({
+	Name = "情云脚本",
+	Callback = function()
+
+loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+
+end
+})
