@@ -22,8 +22,7 @@ local about = Window:MakeTab({
 
 about:AddParagraph("您的用户名:"," "..game.Players.LocalPlayer.Name.."")
 about:AddParagraph("您的注入器:"," "..identifyexecutor().."")
-about:AddParagraph("您当前服务器的ID"," "..game.GameId.."")
-about:AddParagraph("官方Q群:"," "599298896""）
+about:AddParagraph("官方q群"," "..599298896.."")
 
 local Tab = Window:MakeTab({
   Name = "DOORS脚本",
