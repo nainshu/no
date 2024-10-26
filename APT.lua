@@ -543,3 +543,14 @@ end)
 
 end
 })
+Tab:AddButton({
+	Name = "天上掉下塔克饼",
+	Callback = function()
+
+local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://142376088"
+    sound.Parent = game.Workspace
+    sound:Play()
+
+end
+})
