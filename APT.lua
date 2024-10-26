@@ -619,11 +619,11 @@ local sound = Instance.new("Sound")
 end
 })
 Tab:AddButton({
-	Name = "你看到的我",
+	Name = "压迫感的小曲",
 	Callback = function()
 
 local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://13224310294"
+    sound.SoundId = "rbxassetid://7023635858"
     sound.Parent = game.Workspace
     sound:Play()
 
