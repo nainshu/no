@@ -448,3 +448,98 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "音响脚本",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "只能自己听见的音响",
+	Callback = function()
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+Library.DefaultColor = Color3.fromRGB(29,255,0)
+
+Library:Notification({
+	Text = "by:佐菲 :)",
+	Duration = 6
+})
+
+wait (3)
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+Library.DefaultColor = Color3.fromRGB(29,255,0)
+
+Library:Notification({
+	Text = "已经检测到你进入的服务器 ",
+	Duration = 69
+})
+
+----------------------------
+wait (3)
+-- Song Player GUI
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Background Frame
+local background = Instance.new("Frame")
+background.Size = UDim2.new(0, 200, 0, 100)
+background.BackgroundColor3 = Color3.new(0, 0, 1)
+background.BorderColor3 = Color3.new(1, 1, 1)
+background.BackgroundTransparency = 0.5
+background.Position = UDim2.new(0.5, -100, 0.5, -50)
+background.Active = true
+background.Draggable = true
+background.Parent = gui
+
+-- Song ID Input Box
+local idBox = Instance.new("TextBox")
+idBox.Size = UDim2.new(0.5, 0, 0.2, 0)
+idBox.Position = UDim2.new(0.25, 0, 0.2, 0)
+idBox.Text = "音乐ID"
+idBox.Parent = background
+
+-- Play Button
+local playButton = Instance.new("TextButton")
+playButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+playButton.Position = UDim2.new(0.05, 0, 0.5, 0)
+playButton.Text = "播放"
+playButton.Parent = background
+
+-- Stop Button
+local stopButton = Instance.new("TextButton")
+stopButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+stopButton.Position = UDim2.new(0.55, 0, 0.5, 0)
+stopButton.Text = "停止"
+stopButton.Parent = background
+
+-- Audio Instance
+local audio = Instance.new("Sound")
+audio.Parent = game.Workspace
+
+-- Side Notification
+local notification = Instance.new("TextLabel")
+notification.Size = UDim2.new(0, 200, 0, 20)
+notification.Position = UDim2.new(1, 0, 0.5, -10)
+notification.BackgroundColor3 = Color3.new(1, 1, 1)
+notification.BackgroundTransparency = 0.5
+notification.TextColor3 = Color3.new(0, 0, 0)
+notification.Text = "Credits to SUPERSONIC GAMERZ"
+notification.Parent = gui
+
+-- Play Button Functionality
+playButton.MouseButton1Click:Connect(function()
+    local id = tonumber(idBox.Text)
+    if id then
+        audio.SoundId = "rbxassetid://"..id
+        audio:Play()
+    end
+end)
+
+-- Stop Button Functionality
+stopButton.MouseButton1Click:Connect(function()
+    audio:Stop()
+end)
+
+end
+})
