@@ -3170,3 +3170,60 @@ player.CharacterAdded:Connect(onCharacterAdded)
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "其他脚本",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "乌托邦共和国脚本中心",
+	Callback = function()
+
+loadstring(game:HttpGet("https://pastefy.app/xXwLngQD/raw"))()
+
+end
+})
+Tab:AddButton({
+	Name = "大头（不知道怎么用）",
+	Callback = function()
+
+--//Settings
+local Settings = {Size = 30}
+
+--//Services
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+--//Variables
+local LocalPlayer = Players.LocalPlayer
+
+--//Functions
+function Alive(player)
+    if player then
+        return player.Character and player.Character:FindFirstChild("Head") and player.Character:FindFirstChild("Humanoid") or false
+    end
+    return false
+end
+
+-- 初始化设置玩家的 Head 属性
+local function setHeadAttributes(head)
+    head.Massless = true
+    head.Size = Vector3.new(Settings.Size, Settings.Size, Settings.Size)
+end
+
+-- 每秒检查所有玩家并确保他们的 Head 属性一致
+RunService.Heartbeat:Connect(function()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and Alive(player) then
+            local head = player.Character:FindFirstChild("Head")
+            if head and head.Size ~= Vector3.new(Settings.Size, Settings.Size, Settings.Size) then
+                setHeadAttributes(head)
+            end
+        end
+    end
+end)
+
+
+
+end
+})
