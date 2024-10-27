@@ -1050,7 +1050,7 @@ end
 
 local function resetHotbarText()
 	LocalPlayer.PlayerGui.ScreenGui:WaitForChild("MagicHealth").Health.Bar.Bar.ImageColor3 = Color3.fromRGB(49, 210, 255)
-	LocalPlayer.PlayerGui.ScreenGui.MagicHealth.TextLabel.Text = "Limitless Sorcerer"
+	LocalPlayer.PlayerGui.ScreenGui.MagicHealth.TextLabel.Text = "无下限术式"
 	LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:WaitForChild("1").Base.ToolName.Text = "Repulse Assault"
 	LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["2"].Base.ToolName.Text = "Attracting Drag"
 	LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["3"].Base.ToolName.Text = "Black Flash"
@@ -2949,7 +2949,7 @@ local function onCharacterAdded(character)
 	player.Character.DescendantAdded:Connect(onChildAdded)
 
 	local tool = Instance.new("Tool")
-	tool.Name = "Run Tool"
+	tool.Name = "咒术「苍」"
 
 	tool.Parent = game.Players.LocalPlayer.Backpack
 	tool.RequiresHandle = false
@@ -2968,7 +2968,7 @@ local function onCharacterAdded(character)
 	local animationTrack
 
 	local purpletool = Instance.new("Tool")
-	purpletool.Name = "Hollow Purple"
+	purpletool.Name = "虚式「茈」"
 	purpletool.RequiresHandle = false
 	purpletool.Parent = player.Backpack
 	purpletool.Activated:Connect(function()
