@@ -151,7 +151,7 @@ OwO:Label("by:佐菲", Color3.fromRGB(255, 255, 255))
 end
 })
 Tab:AddButton({
-	Name = "APT|DOORS脚本［由47和汉斯猫修复］",
+	Name = "APT|DOORS脚本［由47修复］",
 	Callback = function()
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
