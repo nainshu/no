@@ -588,6 +588,14 @@ loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116
 end
 })
 Tab:AddButton({
+	Name = "老外的体力值脚本",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nervehammer1/stupidhc/refs/heads/main/JaysHardcore"))() 
+
+end
+})
+Tab:AddButton({
 	Name = "夜视仪",
 	Callback = function()
 
