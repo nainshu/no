@@ -1666,6 +1666,20 @@ loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114
 end
 })
 local Tab = Window:MakeTab({
+  Name = "落叶中心专区",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "落叶中心",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
+
+
+end
+})
+local Tab = Window:MakeTab({
   Name = "模仿者",
   Icon = "rbxassetid://4483345998",
   PremiumOnly = false
