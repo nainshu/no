@@ -1477,6 +1477,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/upd7/re
 
 end
 })
+Tab:AddButton({
+	Name = "英文国外遗产（没汉化原因和上面那个一样）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChopLoris/ArcHub/main/main.lua"))()
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "后悔电梯",
   Icon = "rbxassetid://4483345998",
