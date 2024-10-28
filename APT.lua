@@ -1037,6 +1037,22 @@ loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116
 end
 })
 Tab:AddButton({
+	Name = "黑洞［不确定支持不支持其他服务器，小心使用］",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iimateiYT/Scripts/main/Black%20Hole.lua"))()
+
+end
+})
+Tab:AddButton({
+	Name = "可爱的无翼鸟",
+	Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/PFERptU5", true))()
+
+end
+})
+Tab:AddButton({
 	Name = "老外的体力值脚本",
 	Callback = function()
 
