@@ -1061,6 +1061,14 @@ loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/04d7dd
 end
 })
 Tab:AddButton({
+	Name = "可控制物品［不会用进群］",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iimateiYT/Scripts/main/F3X.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "恶作剧之光桶",
 	Callback = function()
 
