@@ -1676,7 +1676,6 @@ Tab:AddButton({
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
 
-
 end
 })
 local Tab = Window:MakeTab({
