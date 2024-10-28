@@ -1465,6 +1465,19 @@ end)
 end
 })
 local Tab = Window:MakeTab({
+  Name = "国王遗产",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "英文国王遗产脚本（因为没开源，所以没汉化）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/upd7/refs/heads/main/Legacy"))()
+
+end
+})
+local Tab = Window:MakeTab({
   Name = "后悔电梯",
   Icon = "rbxassetid://4483345998",
   PremiumOnly = false
