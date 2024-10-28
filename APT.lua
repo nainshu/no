@@ -1692,6 +1692,19 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/Laelmano24/Rael-Hub/ma
 end
 })
 local Tab = Window:MakeTab({
+  Name = "战斗中的菜鸟",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "战斗中的菜鸟47版",
+	Callback = function()
+
+loadstring(game:HttpGet("https://github.com/474375w/djdbejxd/blob/main/%E8%8F%9C%E9%B8%9F%E6%A1%86%E6%9E%B6"))()
+
+end
+})
+local Tab = Window:MakeTab({
   Name = "最强战场",
   Icon = "rbxassetid://4483345998",
   PremiumOnly = false
