@@ -640,6 +640,14 @@ task.wait(2)
 end
 })
 Tab:AddButton({
+	Name = "一只坤哥",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iimateiYT/Scripts/main/Chicken%20Item.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "backdoor中文脚本|APT汉化",
 	Callback = function()
 
