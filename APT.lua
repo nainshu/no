@@ -1143,6 +1143,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "KJ英文脚本",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Gokou300/Gokou300/refs/heads/main/KJ%20XSuriryuHub"))()
+
+end
+})
+Tab:AddButton({
 	Name = "五条悟",
 	Callback = function()
 
