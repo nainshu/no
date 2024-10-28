@@ -4145,3 +4145,16 @@ end)
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "方块故事",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "无法命中",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/OtherScripts/main/BlockTalesGodmode.lua"))()
+
+end
+})
