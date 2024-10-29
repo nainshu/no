@@ -1939,6 +1939,22 @@ end)
 end
 })
 Tab:AddButton({
+	Name = "米诺斯动作集",
+	Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/faQfsu6N"))()
+
+end
+})
+Tab:AddButton({
+	Name = "一把枪",
+	Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/Er5cfTr3"))()
+
+end
+})
+Tab:AddButton({
 	Name = "KJ英文脚本",
 	Callback = function()
 
