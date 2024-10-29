@@ -61,15 +61,6 @@ loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
 
 end
 })
-Tab:AddButton({
-	Name = "穿墙",
-	Callback = function()
-
-local Workspace = game:GetService("Workspace") local Players = game:GetService("Players") if NC then Clipon = true else Clipon = false end Stepped = game:GetService("RunService").Stepped:Connect(function() if not Clipon == false then for a, b in pairs(Workspace:GetChildren()) do if b.Name == Players.LocalPlayer.Name then for i, v in pairs(Workspace[Players.LocalPlayer.Name]:GetChildren()) do if v:IsA("BasePart") then v.CanCollide = false end end end end else Stepped:Disconnect() end end)
-end)
-
-end
-})
 local Tab = Window:MakeTab({
   Name = "DOORS脚本",
   Icon = "rbxassetid://4483345998",
