@@ -25,6 +25,19 @@ about:AddParagraph("您的注入器:"," "..identifyexecutor().."")
 about:AddParagraph("QQ群 : ","599298896")
 
 local Tab = Window:MakeTab({
+  Name = "通用",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "玩家控制",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/dfhj/main/%E6%AD%BB%E4%BA%A1%E7%AC%94%E8%AE%B0.txt"))()
+
+end
+})
+local Tab = Window:MakeTab({
   Name = "DOORS脚本",
   Icon = "rbxassetid://4483345998",
   PremiumOnly = false
