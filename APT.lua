@@ -6128,7 +6128,7 @@ Tab:AddButton({
 	Name = "自动建筑之类的（英文）",
 	Callback = function()
 
-1. loadstring(game:HttpGet(("https://raw.githubusercontent.com/max2007killer/auto-build-not-limit/main/buildaboatv2obs.txt"),true))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/max2007killer/auto-build-not-limit/main/buildaboatv2obs.txt"),true))()
 
 end
 })
