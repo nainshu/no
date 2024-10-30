@@ -6132,3 +6132,16 @@ Tab:AddButton({
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "巴掌",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "刷东西（要求:要几个手套）",
+	Callback = function()
+
+loadstring(game:HttpGet('https://pastefy.app/RfTh3S92/raw'))()
+
+end
+})
