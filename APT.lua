@@ -6111,3 +6111,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "造船寻宝",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "自动刷钱",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/zidongshuaqian"))()
+
+end
+})
