@@ -6145,3 +6145,16 @@ loadstring(game:HttpGet('https://pastefy.app/RfTh3S92/raw'))()
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "越狱",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "越狱",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+
+end
+})
