@@ -6192,3 +6192,16 @@ loadstring(game:HttpGet('https://pastebin.com/raw/E6m8U9k5'))()
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "躲避球",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "自动打球（全打开就行）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://pastefy.app/y3MGGd9n/raw"))()
+
+end
+})
