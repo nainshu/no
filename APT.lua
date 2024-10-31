@@ -6158,3 +6158,24 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "自然灾害模拟器",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "一把剑",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Loadstrings/Linked%20Sword"))()
+
+end
+})
+Tab:AddButton({
+	Name = "雷神",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Loadstrings/Lightning%20Cannon"))()
+
+end
+})
