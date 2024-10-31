@@ -6179,3 +6179,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/mai
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "末日尖塔防御",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "自动挂机刷钱(要带机枪，剑术大师，tix先生，地图选遗留底板）",
+	Callback = function()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/E6m8U9k5'))()
+
+end
+})
