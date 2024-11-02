@@ -1457,47 +1457,15 @@ Tab:AddButton({
 	Name = "紫色手电",
 	Callback = function()
 
-local shadow = game:GetObjects("rbxassetid://13099716081")[1]
-shadow.Parent = game.Players.LocalPlayer.Backpack
+loadstring(game:HttpGet("https://raw.githubusercontent.com/munciseek/Other-script/main/Purple-flashlight"))()
 
-local Players = game:GetService("Players")
-local Plr = Players.LocalPlayer
-local Char = Plr.Character or Plr.CharacterAdded:Wait()
-local Hum = Char:WaitForChild("Humanoid")
-local RightArm = Char:WaitForChild("RightUpperArm")
-local LeftArm = Char:WaitForChild("LeftUpperArm")
-local RightC1 = RightArm.RightShoulder.C2
-local LeftC1 = LeftArm.LeftShoulder.C2
-
-local function setupCrucifix()
-    RightArm.Name = "R_Arm"
-    LeftArm.Name = "L_Arm"
-    
-    RightArm.RightShoulder.C2 = RightC1 * CFrame.Angles(math.rad(-90), 0, 0)
-    LeftArm.LeftShoulder.C2 = LeftC1
-    
-    for _, v in ipairs(Hum:GetPlayingAnimationTracks()) do
-        v:Stop()
-    end
 end
+})
+Tab:AddButton({
+	Name = "引导蜡烛",
+	Callback = function()
 
-local function resetArms()
-    RightArm.Name = "RightUpperArm"
-    LeftArm.Name = "LeftUpperArm"
-    
-    RightArm.RightShoulder.C2 = RightC1
-    LeftArm.LeftShoulder.C2 = LeftC1
-end
-
-shadow.Equipped:Connect(function()
-    setupCrucifix()
-    Plr:SetAttribute("Hidden", true)
-end)
-
-shadow.Unequipped:Connect(function()
-    resetArms()
-    Plr:SetAttribute("Hidden", false)
-end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/munciseek/Other-script/main/Guiding-Candle"))()
 
 end
 })
