@@ -61,6 +61,17 @@ loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
 
 end
 })
+Tab:AddButton({
+	Name = "立即互动",
+	Callback = function()
+
+Default = false,
+    Flag = "InstantToggle",
+    Save = true
+})
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "DOORS脚本",
   Icon = "rbxassetid://4483345998",
