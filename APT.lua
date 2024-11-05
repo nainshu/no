@@ -1471,7 +1471,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "国王遗产",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1492,7 +1492,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "后悔电梯",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1505,7 +1505,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "［NEW］鱼",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1518,7 +1518,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "音响脚本",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1634,21 +1634,8 @@ local sound = Instance.new("Sound")
 end
 })
 local Tab = Window:MakeTab({
-  Name = "The haunt",
-  Icon = "rbxassetid://4483345998",
-  PremiumOnly = false
-  })
-Tab:AddButton({
-	Name = "The haunt速通",
-	Callback = function()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/TheHaunt"))()
-
-end
-})
-local Tab = Window:MakeTab({
   Name = "情云脚本专区",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1693,7 +1680,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "落叶中心专区",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1706,7 +1693,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "模仿者",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1719,7 +1706,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "战斗中的菜鸟",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -1732,7 +1719,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "最强战场",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6011,7 +5998,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "其他脚本",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6068,7 +6055,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "方块故事",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6081,7 +6068,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "造船寻宝",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6102,7 +6089,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "巴掌",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6115,7 +6102,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "越狱",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6128,7 +6115,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "自然灾害模拟器",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6149,7 +6136,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "末日尖塔防御",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -6162,7 +6149,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "躲避球",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12434168968",
   PremiumOnly = false
   })
 Tab:AddButton({
