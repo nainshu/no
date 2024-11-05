@@ -16,7 +16,7 @@ local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/SePpsSPZ'))()
 local Window = OrionLib:MakeWindow({Name = "APT脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用APT脚本", ConfigFolder = "欢迎APT脚本"})
 local about = Window:MakeTab({
     Name = "脚本名称",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://11109742737",
     PremiumOnly = false
 })
 
@@ -26,7 +26,7 @@ about:AddParagraph("QQ群 : ","599298896")
 
 local Tab = Window:MakeTab({
   Name = "通用",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://12493754210",
   PremiumOnly = false
   })
 Tab:AddButton({
@@ -63,7 +63,7 @@ end
 })
 local Tab = Window:MakeTab({
   Name = "DOORS脚本",
-  Icon = "rbxassetid://4483345998",
+  Icon = "rbxassetid://10983763163",
   PremiumOnly = false
   })
 Tab:AddButton({
