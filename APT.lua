@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "召唤肘击王（快跑）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Mode-Remakes/refs/heads/main/PandemoniumProtected.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "小恶魔玩具",
 	Callback = function()
 
