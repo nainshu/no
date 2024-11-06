@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "金色手摇",
+	Callback = function()
+
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/aadyian9000/the-thing/main/GoldenGummyFlashlight.lua"),true))()
+
+end
+})
+Tab:AddButton({
 	Name = "召唤肘击王（快跑）",
 	Callback = function()
 
