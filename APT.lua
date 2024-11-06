@@ -1524,6 +1524,58 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/
 
 end
 })
+Tab:AddButton({
+	Name = "47自动点摇晃",
+	Callback = function()
+
+local Players = game:GetService("Players")
+local GuiService = game:GetService("GuiService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local player = Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+
+local function clickButton(button)
+    GuiService.SelectedObject = button
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+end
+
+local function setupButtonListener()
+    gui.DescendantAdded:Connect(function(descendant)
+        if descendant.Name == "button" and 
+           descendant.Parent and 
+           descendant.Parent.Name == "safezone" and
+           descendant.Parent.Parent and 
+           descendant.Parent.Parent.Name == "shakeui" then
+            task.spawn(function()
+                while descendant and descendant.Parent do
+                    clickButton(descendant)
+                    task.wait()
+                end
+            end)
+        end
+    end)
+    
+    for _, descendant in ipairs(gui:GetDescendants()) do
+        if descendant.Name == "button" and 
+           descendant.Parent and 
+           descendant.Parent.Name == "safezone" and
+           descendant.Parent.Parent and 
+           descendant.Parent.Parent.Name == "shakeui" then
+            task.spawn(function()
+                while descendant and descendant.Parent do
+                    clickButton(descendant)
+                    task.wait()
+                end
+            end)
+        end
+    end
+end
+
+setupButtonListener()
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "音响脚本",
   Icon = "rbxassetid://12434168968",
