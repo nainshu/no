@@ -264,7 +264,7 @@ OwO:Label("by:佐菲", Color3.fromRGB(255, 255, 255))
 end
 })
 Tab:AddButton({
-	Name = "APT|DOORS脚本［由47修复］",
+	Name = "APT|DOORS脚本",
 	Callback = function()
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -1512,7 +1512,7 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
-	Name = "47后悔电梯",
+	Name = "后悔电梯",
 	Callback = function()
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/heads/main/jhgbtfb.lua'))()
@@ -1525,7 +1525,7 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
-	Name = "47全自动钓鱼",
+	Name = "全自动钓鱼",
 	Callback = function()
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/heads/main/fish%20auto'))()
@@ -1533,7 +1533,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/474375w/jgvjyfb/refs/
 end
 })
 Tab:AddButton({
-	Name = "47自动点摇晃",
+	Name = "自动点摇晃",
 	Callback = function()
 
 local Players = game:GetService("Players")
@@ -1778,7 +1778,7 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
-	Name = "战斗中的菜鸟47版",
+	Name = "战斗中的菜鸟",
 	Callback = function()
 
 loadstring(game:HttpGet("https://github.com/474375w/djdbejxd/blob/main/%E8%8F%9C%E9%B8%9F%E6%A1%86%E6%9E%B6"))()
