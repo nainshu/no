@@ -67,6 +67,15 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "杰夫毛绒玩具",
+	Callback = function()
+
+local tool = game:GetObjects("rbxassetid://13069619857")[1]
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+end
+})
+Tab:AddButton({
 	Name = "变成杰夫杀手",
 	Callback = function()
 
