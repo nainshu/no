@@ -67,6 +67,15 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "变成杰夫杀手",
+	Callback = function()
+
+_G.ThirdPerson = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkbutiampoggers/JeffTheKillerMorphV2/main/Source.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "生成giggle",
 	Callback = function()
 
