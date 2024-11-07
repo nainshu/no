@@ -6280,6 +6280,14 @@ loadstring(game:HttpGet("https://pastefy.app/y3MGGd9n/raw"))()
 
 end
 })
+Tab:AddButton({
+	Name = "自动打（第一个最后一个不要打开）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KSA2LbopceHtudepr0l8lkgGlzJds2hwQhn/Speed-Hub-Main-Releases-B-Y-R-E-N/refs/heads/main/Speed-Hub-Bladeball-Update-Lite-V2.txt"))()
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "聊天",
   Icon = "rbxassetid://11109742737",
