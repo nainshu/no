@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "生成巨魔脸",
+	Callback = function()
+
+loadstring(game:HttpGet("https://api.hugebonus.xyz/scripts/TrollFaceSpawner.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "杰夫毛绒玩具",
 	Callback = function()
 
