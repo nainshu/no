@@ -6394,3 +6394,16 @@ PrivateProperties = {
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "3008",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "3008透视（使用会关闭此UI）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/3008.lua"))()
+
+end
+})
