@@ -121,3 +121,40 @@ ESP.itemESP = Value
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "传送",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "传送到热狗",
+	Callback = function()
+
+teleportToItem("Hotdog")
+
+end
+})
+Tab:AddButton({
+	Name = "传送到披萨",
+	Callback = function()
+
+teleportToItem("Pizza")
+
+end
+})
+Tab:AddButton({
+	Name = "传送到汉堡包",
+	Callback = function()
+
+teleportToItem("Burger")
+
+end
+})
+Tab:AddButton({
+	Name = "传送到医疗包",
+	Callback = function()
+
+teleportToItem("Medkit")
+
+end
+})
