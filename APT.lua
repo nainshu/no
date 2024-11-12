@@ -6134,6 +6134,15 @@ player.CharacterAdded:Connect(onCharacterAdded)
 
 end
 })
+Tab:AddButton({
+	Name = "夏油杰",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nova2ezz/Geto-suguru/refs/heads/main/Nova2ezz"))()
+
+
+end
+})
 local Tab = Window:MakeTab({
   Name = "其他脚本",
   Icon = "rbxassetid://12434168968",
