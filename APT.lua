@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "MS中文[V3][来源XK][想加插件进群]",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "LX|DOORS中文",
 	Callback = function()
 
