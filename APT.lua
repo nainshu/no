@@ -70,7 +70,7 @@ Tab:AddButton({
 	Name = "MS中文[V3][来源XK][想加插件进群]",
 	Callback = function()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XSKMS/MS-Chinese-XXZ/refs/heads/main/rename.txt"))()
 
 end
 })
