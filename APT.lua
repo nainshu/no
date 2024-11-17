@@ -6165,6 +6165,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "解锁游戏通行证",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LX318/LX/main/%E8%A7%A3%E9%94%81%E6%B8%B8%E6%88%8F%E9%80%9A%E8%A1%8C%E8%AF%81%202.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "乌托邦共和国脚本中心",
 	Callback = function()
 
