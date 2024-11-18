@@ -3702,6 +3702,14 @@ tool.Activated:Connect(teleportUpAndDown)
 end
 })
 Tab:AddButton({
+	Name = "贝利亚",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TAEKWADO/Blaster-Moveset/refs/heads/main/Blast%20Moveset"))()
+
+end
+})
+Tab:AddButton({
 	Name = "五条悟",
 	Callback = function()
 
