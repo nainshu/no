@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "引导之光手电",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Matthew201322/Doors-Scriptee/refs/heads/main/Shakelight.lua"))()
+
+end
+})
+Tab:AddButton({
 	Name = "控制物品变大物品",
 	Callback = function()
 
