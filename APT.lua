@@ -67,6 +67,14 @@ local Tab = Window:MakeTab({
   PremiumOnly = false
   })
 Tab:AddButton({
+	Name = "控制物品变大物品",
+	Callback = function()
+
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/f0178af2301ca90c09895f10f3e7bd4b/raw/46899ccc3626f3485d85f990012f7ef37ae52e5e/resizerDoorsRemake'))()
+
+end
+})
+Tab:AddButton({
 	Name = "MS中文[V3][来源XK][想加插件进群]",
 	Callback = function()
 
