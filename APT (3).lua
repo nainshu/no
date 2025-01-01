@@ -22,7 +22,7 @@ local about = Window:MakeTab({
 
 about:AddParagraph("您的用户名:"," "..game.Players.LocalPlayer.Name.."")
 about:AddParagraph("您的注入器:"," "..identifyexecutor().."")
-about:AddParagraph("QQ群 : ","599298896")
+about:AddParagraph("QQ群 : ","658358286")
 
 local Tab = Window:MakeTab({
   Name = "通用",
