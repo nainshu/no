@@ -88,7 +88,7 @@ US3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 viuereb.MouseButton1Click:Connect(function()
     cieirbidi:Destroy()
-    --[[] https://raw.githubusercontent.com/nainshu/no/main/%E5%AF%86%E7%A0%81.lua[]]
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/%E5%AF%86%E7%A0%81.lua"))()
     viuereb.Text = "加载中..."
     wait(5)
     viuereb.Text = "加载中..."
