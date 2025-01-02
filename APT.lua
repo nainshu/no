@@ -1,86 +1,99 @@
--- 定义正确的密码
-local correctPassword = "xiaomao"
+--Giu to luau 
 
--- 导入音乐相关库
-local SoundService = game:GetService("SoundService")
+--code by: 琳、Q3E4
+--Welcome! Roblox User
 
--- 创建一个屏幕GUI用于显示密码输入界面
-local passwordGui = Instance.new("ScreenGui")
-passwordGui.Name = "PasswordGui"
-passwordGui.Parent = game.Players.LocalPlayer.PlayerGui
+local cieirbidi = Instance.new("ScreenGui", game:GetService("CoreGui"))
+local vbnciuo = Instance.new("Frame", cieirbidi)
+local ewroiucn = Instance.new("TextLabel", vbnciuo)
+local ebrieubn = Instance.new("TextButton", vbnciuo)
+local owierc = Instance.new("ScrollingFrame", vbnciuo)
+local nbveiru = Instance.new("TextLabel", owierc)
+local viuereb = Instance.new("TextButton", vbnciuo)
+local poiuvnd = Instance.new("UICorner", viuereb)
+local ciedniou = Instance.new("UICorner", ebrieubn)
+local poiehrb = Instance.new("UICorner", vbnciuo)
+local US = Instance.new("UIStroke", vbnciuo)
+local US2 = Instance.new("UIStroke", ebrieubn)
+local US3 = Instance.new("UIStroke", viuereb)
+cieirbidi.ResetOnSpawn = false
+cieirbidi.Name = "discordinvitepopupgui"
 
--- 创建一个框架来容纳其他元素
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.4, 0, 0.35, 0)  -- 适当增加框架高度，为元素留出更多空间
-frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
-frame.Parent = passwordGui
+vbnciuo.Size = UDim2.new(0.5, 0, 0.6, 0)
+vbnciuo.Position = UDim2.new(0.25, 0, 0.2, 0)
+vbnciuo.BackgroundTransparency = 0.1
+vbnciuo.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
 
--- 创建一个文本标签用于显示"Q群: 793336700"文字
-local qqGroupLabel = Instance.new("TextLabel")
-qqGroupLabel.Size = UDim2.new(1, 0, 0.15, 0)  -- 调整Q群标签大小
-qqGroupLabel.BackgroundTransparency = 1
-qqGroupLabel.TextColor3 = Color3.new(0.5, 0.5, 0.5)  -- 设置Q群标签颜色为灰色，与其他文字区分开
-qqGroupLabel.Font = Enum.Font.SourceSansBold
-qqGroupLabel.TextSize = 16
-qqGroupLabel.Text = "Q群: 658358286"
-qqGroupLabel.Position = UDim2.new(0, 0, 0.05, 0)  -- 调整Q群标签位置在上方
-qqGroupLabel.Parent = frame
+poiehrb.CornerRadius = UDim.new(0, 10)
+US.Color = Color3.new(0.1, 0.1, 0.1)
+US.Thickness = 5
+US.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
--- 创建一个文本标签用于提示玩家输入密码
-local passwordPrompt = Instance.new("TextLabel")
-passwordPrompt.Size = UDim2.new(1, 0, 0.3, 0)
-passwordPrompt.BackgroundTransparency = 1
-passwordPrompt.TextColor3 = Color3.new(1, 1, 1)  -- 设置GT脚本秘钥系统文字颜色为白色
-passwordPrompt.Font = Enum.Font.SourceSansBold
-passwordPrompt.TextSize = 20
-passwordPrompt.Text = "APT脚本秘钥系统"
-passwordPrompt.Position = UDim2.new(0, 0, 0.2, 0)  -- 调整GT脚本秘钥系统位置在下方
-passwordPrompt.Parent = frame
+ewroiucn.Size = UDim2.new(0.75, 0, 0.1, 0)
+ewroiucn.Position = UDim2.new(0.03, 0, 0, 0)
+ewroiucn.Text = "  APT脚本公告"
+ewroiucn.TextScaled = true
+ewroiucn.Font = Enum.Font.SourceSansBold
+ewroiucn.TextColor3 = Color3.new(1, 1, 1)
+ewroiucn.BackgroundTransparency = 1
+ewroiucn.TextXAlignment = Enum.TextXAlignment.Center
+ewroiucn.TextYAlignment = Enum.TextYAlignment.Center
 
--- 创建一个文本框用于玩家输入密码
-local passwordTextBox = Instance.new("TextBox")
-passwordTextBox.Size = UDim2.new(1, 0, 0.2, 0)
-passwordTextBox.Position = UDim2.new(0, 0, 0.5, 0)  -- 适当调整文本框位置
-passwordTextBox.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
-passwordTextBox.TextColor3 = Color3.new(1, 1, 1)
-passwordTextBox.Font = Enum.Font.SourceSans
-passwordTextBox.TextSize = 18
-passwordTextBox.Parent = frame
+ebrieubn.Size = UDim2.new(0.1, 0, 0.1, 0)
+ebrieubn.Position = UDim2.new(0.89, 0, 0.01, 0)
+ebrieubn.Text = "X"
+ebrieubn.TextScaled = true
+ebrieubn.Font = Enum.Font.SourceSansBold
+ebrieubn.TextColor3 = Color3.new(1, 1, 1)
+ebrieubn.BackgroundColor3 = Color3.new(1, 0, 0)
 
--- 创建一个提交按钮
-local submitButton = Instance.new("TextButton")
-submitButton.Size = UDim2.new(0.3, 0, 0.2, 0)
-submitButton.Position = UDim2.new(0.35, 0, 0.75, 0)  -- 适当调整提交按钮位置
-submitButton.BackgroundColor3 = Color3.new(0, 0.5, 0)
-submitButton.TextColor3 = Color3.new(1, 1, 1)
-submitButton.Font = Enum.Font.SourceSansBold
-submitButton.TextSize = 20
-submitButton.Text = "提交"
-submitButton.Parent = frame
+ciedniou.CornerRadius = UDim.new(0, 8)
+US2.Color = Color3.new(0.5, 0, 0)
+US2.Thickness = 2
+US2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
--- 创建一个音乐对象并播放音乐
-local music = Instance.new("Sound")
-music.SoundId = "rbxassetid://1840172845" -- 将<音乐ID>替换为你实际的音乐ID
-music.Volume = 0.5 -- 设置音量，可根据需要调整
-music.Parent = SoundService
-music:Play()
+owierc.Size = UDim2.new(0.9, 0, 0.75, 0)
+owierc.Position = UDim2.new(0.05, 0, 0.12, 0)
+owierc.BackgroundTransparency = 1
+owierc.CanvasSize = UDim2.new(0, 0, 2, 0)
+owierc.ScrollBarThickness = 3
+owierc.ScrollBarImageColor3 = Color3.new(0.5, 0.5, 0.5)
 
--- 提交按钮的点击事件处理函数
-submitButton.MouseButton1Click:Connect(function()
-    local enteredPassword = passwordTextBox.Text
-    if enteredPassword == correctPassword then
-        passwordGui:Destroy()  -- 如果密码正确，销毁密码输入界面
-        music:Stop() -- 停止音乐播放
-        -- 以下是加载并执行外部脚本的代码，不建议在实际中使用，存在风险
-        local scriptContent = game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/APT%20(3).lua")
-        local func = loadstring(scriptContent)
-        if func then
-            func()
-        else
-            print("加载脚本失败")
-        end
-    else
-        passwordTextBox.Text = ""  -- 如果密码错误，清空文本框，让玩家重新输入
-    end
+nbveiru.Size = UDim2.new(1, -10, 2, 0)
+nbveiru.Position = UDim2.new(0, 0, 0, 0)
+nbveiru.Text = [[
+脚本不定时更新，群号599298896
+里面内涵丰富脚本
+]]
+nbveiru.TextSize = 14
+nbveiru.TextWrapped = true
+nbveiru.Font = Enum.Font.Highway
+nbveiru.TextColor3 = Color3.new(1, 1, 1)
+nbveiru.BackgroundTransparency = 1
+nbveiru.TextXAlignment = Enum.TextXAlignment.Left
+nbveiru.TextYAlignment = Enum.TextYAlignment.Top
+
+viuereb.Size = UDim2.new(0.4, 0, 0.1, 0)
+viuereb.Position = UDim2.new(0.3, 0, 0.875, 0)
+viuereb.Text = "确认"
+viuereb.TextScaled = true
+viuereb.Font = Enum.Font.SourceSansBold
+viuereb.TextColor3 = Color3.new(1, 1, 1)
+viuereb.BackgroundColor3 = Color3.new(0.26, 0.59, 0.98)
+
+poiuvnd.CornerRadius = UDim.new(0, 8)
+US3.Color = Color3.new(0.13, 0.29, 0.54)
+US3.Thickness = 2
+US3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+viuereb.MouseButton1Click:Connect(function()
+    cieirbidi:Destroy()
+    --[[] https://raw.githubusercontent.com/nainshu/no/main/%E5%AF%86%E7%A0%81.lua[]]
+    viuereb.Text = "加载中..."
+    wait(5)
+    viuereb.Text = "加载中..."
+end)
+
+ebrieubn.MouseButton1Click:Connect(function()
+    cieirbidi:Destroy()
 end)
