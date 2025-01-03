@@ -6464,3 +6464,40 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/3008.
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "链脚本",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "自动瞄准",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/aimbot.lua"))()
+
+end
+})
+Tab:AddButton({
+	Name = "透视",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/chain%20esp.lua"))()
+
+end
+})
+Tab:AddButton({
+	Name = "透视废料",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrap%20esp.lua"))()
+
+end
+})
+Tab:AddButton({
+	Name = "一键收集所有废料",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
+
+end
+})
