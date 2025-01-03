@@ -22,7 +22,7 @@ qqGroupLabel.BackgroundTransparency = 1
 qqGroupLabel.TextColor3 = Color3.new(0.5, 0.5, 0.5)  -- 设置Q群标签颜色为灰色，与其他文字区分开
 qqGroupLabel.Font = Enum.Font.SourceSansBold
 qqGroupLabel.TextSize = 16
-qqGroupLabel.Text = "Q群: 658358286"
+qqGroupLabel.Text = "Q群: 963770308"
 qqGroupLabel.Position = UDim2.new(0, 0, 0.05, 0)  -- 调整Q群标签位置在上方
 qqGroupLabel.Parent = frame
 
