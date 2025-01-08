@@ -1,7 +1,7 @@
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
-    Title = "你的脚本名称（APT）停止更新",
+    Title = "你的脚本名称（APT）小猫恢复更新",
     Text = "正在加载",
     Duration = 5, 
 })
@@ -6498,6 +6498,45 @@ Tab:AddButton({
 	Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "挖掘它",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "挖掘它（贼好用）",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/Digit"))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "骗子酒馆",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "骗子酒馆",
+	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/cowka/c0wkaHub/refs/heads/main/Liars%20Club'))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "史诗迷你游戏",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "史诗迷你游戏",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI"))()
 
 end
 })
