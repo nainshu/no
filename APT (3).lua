@@ -6540,3 +6540,42 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SlamminPig/rblxgames/
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "不可能的玻璃桥",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "不可能的玻璃桥",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/GlassBridge"))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "鱿鱼游戏",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "鱿鱼游戏",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/ShrimpGame"))()
+
+end
+})
+local Tab = Window:MakeTab({
+  Name = "古怪的巫师",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "古怪的巫师",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts/main/WackyWizards.lua"))()
+
+end
+})
