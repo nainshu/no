@@ -6579,3 +6579,34 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts
 
 end
 })
+local Tab = Window:MakeTab({
+  Name = "FE",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+Tab:AddButton({
+	Name = "NEKO猫娘",
+	Callback = function()
+
+DisableFlingHealthBar = false
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neko"))()
+
+end
+})
+Tab:AddButton({
+	Name = "摩托车",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
+
+end
+})
+Tab:AddButton({
+	Name = "DEX",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/REKMS-cttub/Public-Scripts/refs/heads/main/Dex%20Sorcue.txt"))()
+
+end
+})
