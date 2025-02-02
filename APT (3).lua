@@ -13,7 +13,7 @@ print("反挂机开启")
 		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 		end)
 local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/SePpsSPZ'))()
-local Window = OrionLib:MakeWindow({Name = "APT脚本停止更新", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用APT脚本", ConfigFolder = "欢迎APT脚本"})
+local Window = OrionLib:MakeWindow({Name = "APT脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用APT脚本", ConfigFolder = "欢迎APT脚本"})
 local about = Window:MakeTab({
     Name = "脚本名称",
     Icon = "rbxassetid://11109742737",
@@ -42,6 +42,29 @@ Tab:AddButton({
 	Callback = function()
 
 loadstring(game:HttpGet'https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt')()
+
+end
+})
+Tab:AddButton({
+	Name = "ly指令",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+
+end
+})
+Tab:AddButton({
+	Name = "一键部署开发环境",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/yijianbushu.lua"))()
+end
+})
+Tab:AddButton({
+	Name = "妄想办公室",
+	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/Paranoia.lua"))()
 
 end
 })
