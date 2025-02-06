@@ -1,4 +1,4 @@
-local correctPassword = "xiaomao"
+local correctPassword = "小猫土豆"
 
 -- 导入音乐相关库
 local SoundService = game:GetService("SoundService")
