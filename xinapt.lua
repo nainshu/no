@@ -20,7 +20,7 @@ CodeTab:Button({
     Title = "旧版APT",
     Desc = "旧版本APT",
     Callback = function()
-        print("按钮被点击了！")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/APT%20(3).lua"))()
     end
 })
 
