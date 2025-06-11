@@ -1,0 +1,198 @@
+local Players = game:GetService("Players")
+local PhysicsService = game:GetService("PhysicsService")
+local localPlayer = Players.LocalPlayer
+local userId = 8515470506
+
+local function createGubbyBot()
+    local bot = Players:CreateHumanoidModelFromUserId(userId)
+    bot.Name = "Gubby"
+    bot.Parent = workspace
+
+    local humanoid = bot:WaitForChild("Humanoid")
+    local hrp = bot:WaitForChild("HumanoidRootPart")
+    humanoid.DisplayName = " "
+    humanoid.WalkSpeed = 14
+
+    local soundIds = {
+        "rbxassetid://6715870978",
+        "rbxassetid://9118862378"
+    }
+
+    task.spawn(function()
+        while true do
+            task.wait(math.random(1, 10))
+            local s = Instance.new("Sound", bot)
+            s.SoundId = soundIds[math.random(1, #soundIds)]
+            s.PlaybackSpeed = ({0.7, 1, 1.5})[math.random(1, 3)]
+            s.Volume = 1
+            s:Play()
+            s.Ended:Connect(function() s:Destroy() end)
+        end
+    end)
+
+    task.spawn(function()
+        while true do
+            task.wait(math.random(1, 4))
+            humanoid.Jump = true
+        end
+    end)
+
+    return bot, hrp, humanoid
+end
+
+local bot, hrp, humanoid = createGubbyBot()
+
+local followPlayer = true
+local randomWalk = false
+
+task.spawn(function()
+    while true do
+        local char = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+        local root = char:FindFirstChild("HumanoidRootPart")
+        if root and hrp then
+            if not char:FindFirstChild("Humanoid") or char:FindFirstChild("Humanoid").Health <= 0 then
+                repeat task.wait() until char:FindFirstChild("Humanoid") and char.Humanoid.Health > 0
+            end
+            local dist = (hrp.Position - root.Position).Magnitude
+            if dist > 100 then
+                bot:SetPrimaryPartCFrame(root.CFrame * CFrame.new(2, 0, 2))
+            elseif followPlayer then
+                humanoid:MoveTo(root.Position)
+            elseif randomWalk then
+                local randomPos = Vector3.new(
+                    math.random(-50, 50),
+                    hrp.Position.Y,
+                    math.random(-50, 50)
+                )
+                humanoid:MoveTo(randomPos)
+                task.wait(5)
+            end
+        end
+        task.wait(0.5)
+    end
+end)
+
+local gui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+gui.Name = "Gubby控制面板"
+
+local uicorner = function(parent)
+    local c = Instance.new("UICorner")
+    c.CornerRadius = UDim.new(0, 12)
+    c.Parent = parent
+end
+
+local stroke = function(parent, color)
+    local s = Instance.new("UIStroke")
+    s.Thickness = 2
+    s.Color = color or Color3.fromRGB(0, 200, 255)
+    s.Parent = parent
+end
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 250, 0, 180)
+frame.Position = UDim2.new(0.5, -125, 0.8, -90)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+frame.BackgroundTransparency = 0.2
+frame.Active = true
+frame.Draggable = true
+uicorner(frame)
+stroke(frame)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "Gubby 控制面板"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 22
+title.TextColor3 = Color3.fromRGB(0, 200, 255)
+
+local divider = Instance.new("Frame", frame)
+divider.Size = UDim2.new(0.9, 0, 0, 1)
+divider.Position = UDim2.new(0.05, 0, 0, 40)
+divider.BackgroundColor3 = Color3.fromRGB(0, 200, 255)
+divider.BorderSizePixel = 0
+
+local followButton = Instance.new("TextButton", frame)
+followButton.Size = UDim2.new(0.9, 0, 0, 45)
+followButton.Position = UDim2.new(0.05, 0, 0, 50)
+followButton.Text = "让Gubby自由活动"
+followButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+followButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+followButton.Font = Enum.Font.GothamBold
+followButton.TextSize = 16
+uicorner(followButton)
+stroke(followButton)
+
+followButton.MouseButton1Click:Connect(function()
+    if followPlayer then
+        followPlayer = false
+        randomWalk = true
+        followButton.Text = "让Gubby跟随你"
+    else
+        followPlayer = true
+        randomWalk = false
+        followButton.Text = "让Gubby自由活动"
+    end
+end)
+
+local tpButton = Instance.new("TextButton", frame)
+tpButton.Size = UDim2.new(0.9, 0, 0, 45)
+tpButton.Position = UDim2.new(0.05, 0, 0, 105)
+tpButton.Text = "传送Gubby到身边"
+tpButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+tpButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+tpButton.Font = Enum.Font.GothamBold
+tpButton.TextSize = 16
+uicorner(tpButton)
+stroke(tpButton)
+
+tpButton.MouseButton1Click:Connect(function()
+    local char = localPlayer.Character
+    local root = char and char:FindFirstChild("HumanoidRootPart")
+    if root and hrp then
+        bot:SetPrimaryPartCFrame(root.CFrame * CFrame.new(2, 0, 2))
+    end
+end)
+
+local toggleButton = Instance.new("TextButton", gui)
+toggleButton.Size = UDim2.new(0, 50, 0, 50)
+toggleButton.Position = UDim2.new(1, -60, 0, 10)
+toggleButton.Text = "⚙️"
+toggleButton.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+toggleButton.BackgroundTransparency = 0.2
+toggleButton.TextSize = 24
+toggleButton.TextColor3 = Color3.fromRGB(0, 200, 255)
+uicorner(toggleButton)
+stroke(toggleButton, Color3.fromRGB(100, 100, 100))
+
+frame.Visible = false
+
+toggleButton.MouseButton1Click:Connect(function()
+    frame.Visible = not frame.Visible
+    if frame.Visible then
+        toggleButton.Text = "❌"
+    else
+        toggleButton.Text = "⚙️"
+    end
+end)
+
+local function setupHoverEffect(button)
+    button.MouseEnter:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    end)
+    button.MouseLeave:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    end)
+end
+
+setupHoverEffect(followButton)
+setupHoverEffect(tpButton)
+setupHoverEffect(toggleButton)
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "由AlexPT汉化并修正",
+    Text = "Gubby已加载！使用右上角齿轮按钮打开控制面板",
+    Icon = "rbxassetid://6715870978", 
+    Duration = 5
+})
