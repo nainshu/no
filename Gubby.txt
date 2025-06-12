@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local PhysicsService = game:GetService("PhysicsService")
 local localPlayer = Players.LocalPlayer
-local userId = 8515470506
+local userId = 3841126619
 
 local function createGubbyBot()
     local bot = Players:CreateHumanoidModelFromUserId(userId)
