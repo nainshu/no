@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Script Hub</title>
+    <style>
+        /* --- 全局样式与字体 --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #a7a7a7;
+            --background-start: #0f0c29;
+            --background-mid: #302b63;
+            --background-end: #24243e;
+            --card-background: rgba(22, 22, 35, 0.45);
+            --blur-effect: blur(10px);
+            --button-bg: rgba(69, 56, 148, 0.8);
+            --button-hover-bg: rgba(89, 72, 189, 1);
+            --glow-color: rgba(127, 90, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(-45deg, var(--background-start), var(--background-mid), var(--background-end));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+            animation: moveGrid 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes moveGrid {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-100px, -100px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* --- Logo --- */
+        .logo-container {
+            margin-bottom: 2rem;
+            transform: translateY(0);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color);
+            border: 2px solid var(--glow-color);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--glow-color), 0 0 50px var(--glow-color);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* --- 卡片设计 --- */
+        .script-card {
+            background: var(--card-background);
+            backdrop-filter: var(--blur-effect);
+            -webkit-backdrop-filter: var(--blur-effect); /* For Safari */
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--glow-color);
+        }
+
+        p {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* --- 按钮样式 --- */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            background: var(--button-bg);
+            color: var(--primary-color);
+            border: 1px solid var(--glow-color);
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all .5s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .btn:hover {
+            background: var(--button-hover-bg);
+            box-shadow: 0 0 15px var(--glow-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        /* --- 提示消息 --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--button-hover-bg);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -10px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://tc.z.wiki/autoupload/TFyTLciDzR6VyfUDUhdf4VOcC3_Sr7DlJ2wayUTM7p6yl5f0KlZfm6UsKj-HyTuv/20250614/Yw7M/1500X1500/IMG-9069.png" alt="Logo" class="logo">
+        </div>
+
+        <div class="script-card">
+            <h1>科创云端</h1>
+            <p>半缝合半自制</p>
+            
+            <div class="button-group">
+                <button class="btn" onclick="copyToClipboard('script', '脚本已复制到剪贴板！')">
+                    复制脚本
+                </button>
+                
+                <button class="btn" onclick="copyToClipboard('qq', '官方Q群号已复制！')">
+                    复制官方Q群号
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // --- 脚本和Q群号配置 ---
+        // 在这里替换成你自己的脚本内容和QQ群号
+        const yourScript = `loadstring(game:HttpGet("https://raw.githubusercontent.com/nainshu/no/main/TechInnovationCloud.lua"))()`.trim();
+
+        const qqGroupNumber = '1048909575'; // <--- 在这里替换成你的真实QQ群号
+
+        // --- 复制到剪贴板功能 ---
+        function copyToClipboard(text, message) {
+            // 如果是复制脚本，使用预设的脚本内容
+            if (text === 'script') {
+                text = yourScript;
+            } 
+            // 如果是复制QQ群，使用预设的QQ群号
+            else if (text === 'qq') {
+                text = qqGroupNumber;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(message);
+            }).catch(err => {
+                console.error('复制失败: ', err);
+                showToast('复制失败，请手动复制。');
+            });
+        }
+        
+        // --- 显示提示消息 ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); // 3秒后自动消失
+        }
+        
+        // --- 动态修改按钮的onclick事件，使其使用最新的变量 ---
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const copyScriptButton = document.querySelector('.btn[onclick*="script"]');
+            const copyQQButton = document.querySelector('.btn[onclick*="qq"]');
+            
+            if (copyScriptButton) {
+                copyScriptButton.setAttribute('onclick', `copyToClipboard('script', '脚本已复制到剪贴板！')`);
+            }
+            if (copyQQButton) {
+                copyQQButton.setAttribute('onclick', `copyToClipboard('qq', '官方Q群号已复制！')`);
+            }
+        });
+    </script>
+
+</body>
+</html>
