@@ -6,24 +6,20 @@ local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
 local OrionLib = {
+    Elements = {},
+    ThemeObjects = {},
+    Connections = {},
+    Flags = {},
     Themes = {
         Default = {
             Main = Color3.fromRGB(255, 255, 255),       -- 主背景色(白)
             Second = Color3.fromRGB(245, 245, 245),     -- 次级背景色(浅灰)
-            Stroke = Color3.fromRGB(220, 220, 220),     -- 边框色(灰)
+            Stroke = Color3.fromRGB(220, 220, 220),     -- 边框/描边色(灰)
             Divider = Color3.fromRGB(230, 230, 230),    -- 分隔线色(浅灰)
-            Text = Color3.fromRGB(50, 50, 50),          -- 主要文字(深灰)
-            TextDark = Color3.fromRGB(120, 120, 120),   -- 次要文字(中灰)
-            
-            -- 新增透明度控制
-            Transparency = {
-                Main = 0.2,     -- 主背景透明度(20%)
-                Second = 0.15,   -- 次级背景透明度(15%)
-                Stroke = 0.3,    -- 边框透明度(30%)
-            }
+            Text = Color3.fromRGB(50, 50, 50),          -- 主要文字色(深灰)
+            TextDark = Color3.fromRGB(120, 120, 120)    -- 次要文字色(中灰)
         }
-    }
-}
+    },
     SelectedTheme = "Default",
     Folder = nil,
     SaveCfg = false
