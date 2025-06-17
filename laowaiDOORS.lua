@@ -1,4 +1,4 @@
-Local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+Local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/AsynchronousAI/vectorfield/main/init.lua'))()
 
 local Window = Rayfield:CreateWindow({
     Name = "Red Hub (Die of death)",
