@@ -1407,4 +1407,4 @@ UIG.Parent = Open
       end
       return window
     end
-return library分析
+return library
