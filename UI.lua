@@ -123,7 +123,7 @@ function library.new(library, name,theme)
       end
 -------------------------AL------------------------------
 ALTransparency = 0.6
-ALcolor = Color3.fromRGB(255,255,255)
+ALcolor = Color3.fromRGB(0,0,0)
 -------------------------AL------------------------------
 if theme == 'dark' then
     MainColor = Color3.fromRGB(25, 25, 25)
@@ -301,7 +301,7 @@ end
       ScriptTitle.Size = UDim2.new(0, 102, 0, 20)
       ScriptTitle.Font = Enum.Font.GothamSemibold
       ScriptTitle.Text = name
-      ScriptTitle.TextColor3 = Color3.fromRGB(0, 255, 255)
+      ScriptTitle.TextColor3 = Color3.fromRGB(0, 0, 0)
       ScriptTitle.TextSize = 14.000
       ScriptTitle.TextScaled = true
       ScriptTitle.TextXAlignment = Enum.TextXAlignment.Left
