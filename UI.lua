@@ -200,7 +200,7 @@ end
       drag(Main)
       
       UICornerMain.Parent = Main
-      UICornerMain.CornerRadius = UDim.new(0,8)
+      UICornerMain.CornerRadius = UDim.new(0,3)
       
       DropShadowHolder.Name = "DropShadowHolder"
       DropShadowHolder.Parent = Main
@@ -216,9 +216,9 @@ end
       DropShadow.BackgroundTransparency = 1.000
       DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
       DropShadow.Size = UDim2.new(1, 10, 1, 10)
-      DropShadow.Image = "rbxassetid://78618505160311" --背景
+      DropShadow.Image = "rbxassetid://115123972250625" --背景
       DropShadow.ImageColor3 = Color3.fromRGB(255,255,255)
-      DropShadow.SliceCenter = Rect.new(10, 10, 490, 490)
+      DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 
 
       UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)), ColorSequenceKeypoint.new(0.10, Color3.fromRGB(255, 127, 0)), ColorSequenceKeypoint.new(0.20, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(0.30, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.40, Color3.fromRGB(0, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 0, 255)), ColorSequenceKeypoint.new(0.60, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.70, Color3.fromRGB(255, 0, 0)), ColorSequenceKeypoint.new(0.80, Color3.fromRGB(255, 127, 0)), ColorSequenceKeypoint.new(0.90, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
@@ -258,7 +258,7 @@ end
       SB.Size = UDim2.new(0, 8, 0, 353)
       SB.Transparency = 1.0
       
-      SBC.CornerRadius = UDim.new(0, 8)
+      SBC.CornerRadius = UDim.new(0, 6)
       SBC.Name = "SBC"
       SBC.Parent = SB
       
@@ -530,7 +530,7 @@ UIG.Parent = Open
         end)
 ------------------------------------------------------AL.King音乐-------------------------------------------------------
     local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://7743872365" --音乐id
+    sound.SoundId = "rbxassetid://107500467975886" --音乐id
     sound.Parent = game.Workspace
     sound:Play()
 ---------------分割线-------------------------------分割线-------------------------------分割线----------------
@@ -553,7 +553,7 @@ UIG.Parent = Open
           Section.ClipsDescendants = true
           Section.Size = UDim2.new(0.981000006, 0, 0, 36)
           
-          SectionC.CornerRadius = UDim.new(0, 8)
+          SectionC.CornerRadius = UDim.new(0, 6)
           SectionC.Name = "SectionC"
           SectionC.Parent = Section
           
