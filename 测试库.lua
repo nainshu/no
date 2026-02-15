@@ -401,7 +401,7 @@ function library.new(arg1, arg2, arg3)
     MoveIconBtn.BackgroundTransparency = 1
     MoveIconBtn.Position = UDim2.new(1, -35, 0.025, 0) -- 右上角
     MoveIconBtn.Size = UDim2.new(0, 30, 0, 30)
-    MoveIconBtn.Image = "rbxassetid://6034509993" -- 十字箭头
+    MoveIconBtn.Image = "rbxassetid://139381026962112" -- [Updated Icon]
     MoveIconBtn.ImageColor3 = Scheme.FontColor
     MoveIconBtn.ImageTransparency = 0.5
     MoveIconBtn.ZIndex = 50 -- 确保在最上层
