@@ -41,79 +41,75 @@ function Tween(obj, t, data)
 	return true
 end
 
--- [新增] 调整大小功能函数
+-- [修复] 健壮的调整大小功能
 local function MakeResizable(frame, handle)
     local dragging = false
-    local dragInput, dragStart, startSize
+    local dragStart, startSize
 
     handle.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             dragging = true
             dragStart = input.Position
             startSize = frame.Size
-            input.Changed:Connect(function()
+            
+            -- 监听输入结束（松开鼠标）
+            local endCon
+            endCon = input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
                     dragging = false
+                    endCon:Disconnect()
                 end
             end)
         end
     end)
 
-    handle.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement then
-            dragInput = input
-        end
-    end)
-
+    -- 使用全局输入检测，防止鼠标移出Handle范围后失效
     services.UserInputService.InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
             local delta = input.Position - dragStart
             frame.Size = UDim2.new(
                 startSize.X.Scale, 
-                math.max(400, startSize.X.Offset + delta.X), -- 最小宽度限制
+                math.max(450, startSize.X.Offset + delta.X), -- 限制最小宽度
                 startSize.Y.Scale, 
-                math.max(300, startSize.Y.Offset + delta.Y)  -- 最小高度限制
+                math.max(350, startSize.Y.Offset + delta.Y)  -- 限制最小高度
             )
         end
     end)
 end
 
--- [修改] 拖动功能函数，现在支持指定 handle
+-- [修复] 健壮的拖动功能
 function drag(frame, hold)
 	if not hold then
 		hold = frame
 	end
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	local function update(input)
-		local delta = input.Position - dragStart
-		frame.Position =
-			UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
+	local dragging = false
+	local dragStart, startPos
+
 	hold.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = frame.Position
-			input.Changed:Connect(function()
+            
+            local endCon
+			endCon = input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
+                    endCon:Disconnect()
 				end
 			end)
 		end
 	end)
-	frame.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement then
-			dragInput = input
-		end
-	end)
-	services.UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			update(input)
-		end
-	end)
+    
+    services.UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            local delta = input.Position - dragStart
+            frame.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + delta.X, 
+                startPos.Y.Scale, startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
 end
 
 local toggled = false
@@ -152,7 +148,6 @@ function switchTab(new)
 end
 
 function library.new(arg1, arg2, arg3)
-    -- Handle call format: library:new(...) or library.new(...)
     local name, theme
     if type(arg1) == "table" then
         name = arg2
@@ -183,18 +178,21 @@ function library.new(arg1, arg2, arg3)
 	local UIG = Instance.new("UIGradient")
 	local UICornerMain = Instance.new("UICorner")
 
-    -- [新增] 搜索栏容器
+    -- [组件] 搜索栏
     local SearchContainer = Instance.new("Frame")
     local SearchBox = Instance.new("TextBox")
     local SearchIcon = Instance.new("ImageLabel")
     local SearchCorner = Instance.new("UICorner")
     local SearchStroke = Instance.new("UIStroke")
 
-    -- [新增] 移动图标
+    -- [组件] 移动图标
     local MoveIconBtn = Instance.new("ImageButton")
     
-    -- [新增] 调整大小手柄
+    -- [组件] 调整大小手柄
     local ResizeHandle = Instance.new("ImageButton")
+
+    -- [新增] 版本号显示
+    local VersionLabel = Instance.new("TextLabel")
 
 	if syn and syn.protect_gui then
 		syn.protect_gui(dogent)
@@ -218,10 +216,10 @@ function library.new(arg1, arg2, arg3)
 	Main.BackgroundColor3 = Scheme.BackgroundColor
 	Main.BackgroundTransparency = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Size = UDim2.new(0, 572, 0, 353)
+	Main.Size = UDim2.new(0, 572, 0, 363) -- 稍微增加高度以容纳版本号
 	Main.ZIndex = 1
 	Main.Active = true
-    Main.ClipsDescendants = true -- Prevent content overflow when resizing
+    Main.ClipsDescendants = true 
     AddOutline(Main, 4)
 	
 	services.UserInputService.InputEnded:Connect(function(input)
@@ -230,9 +228,8 @@ function library.new(arg1, arg2, arg3)
 		end
 	end)
 	
-    -- [修改] 拖动绑定到 MoveIconBtn 而不是整个 Main
+    -- 绑定拖动逻辑 (只允许拖动移动图标和侧边栏)
 	drag(Main, MoveIconBtn)
-    -- 为了方便，也可以拖动侧边栏顶部标题区域
     drag(Main, Side)
 
 	UICornerMain.Parent = Main
@@ -242,9 +239,8 @@ function library.new(arg1, arg2, arg3)
 	TabMain.Parent = Main
 	TabMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TabMain.BackgroundTransparency = 1.000
-    -- 调整 TabMain 位置，为搜索栏留出空间
 	TabMain.Position = UDim2.new(0.217000037, 0, 0, 45) 
-	TabMain.Size = UDim2.new(0.77, 0, 0.85, 0) -- 动态大小以适应调整
+	TabMain.Size = UDim2.new(0.77, 0, 0.85, -20) -- 底部留出空间给版本号
 	
 	MainC.CornerRadius = UDim.new(0, 4)
 	MainC.Name = "MainC"
@@ -256,7 +252,7 @@ function library.new(arg1, arg2, arg3)
 	SB.BackgroundColor3 = Scheme.BackgroundColor
     SB.BorderSizePixel = 0
 	SB.BackgroundTransparency = 0
-	SB.Size = UDim2.new(0, 8, 1, 0) -- Full height
+	SB.Size = UDim2.new(0, 8, 1, 0) 
 	
 	SBC.CornerRadius = UDim.new(0, 4)
 	SBC.Name = "SBC"
@@ -270,9 +266,8 @@ function library.new(arg1, arg2, arg3)
 	Side.BorderSizePixel = 0
 	Side.ClipsDescendants = true
 	Side.Position = UDim2.new(1, 0, 0, 0)
-	Side.Size = UDim2.new(0, 110, 1, 0) -- Full height
+	Side.Size = UDim2.new(0, 110, 1, 0) 
     
-    -- Separator
     local Separator = Instance.new("Frame")
     Separator.Parent = Main
     Separator.BackgroundColor3 = Scheme.OutlineColor
@@ -287,7 +282,7 @@ function library.new(arg1, arg2, arg3)
 	TabBtns.BackgroundTransparency = 1.000
 	TabBtns.BorderSizePixel = 0
 	TabBtns.Position = UDim2.new(0, 0, 0.0973535776, 0)
-	TabBtns.Size = UDim2.new(1, 0, 0.9, 0)
+	TabBtns.Size = UDim2.new(1, 0, 0.9, -20)
 	TabBtns.CanvasSize = UDim2.new(0, 0, 1, 0)
 	TabBtns.ScrollBarThickness = 0
 	
@@ -310,12 +305,12 @@ function library.new(arg1, arg2, arg3)
 	ScriptTitle.TextScaled = true
 	ScriptTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-    -- // [新增功能 1] 搜索栏 // --
+    -- // 搜索栏 // --
     SearchContainer.Name = "SearchContainer"
     SearchContainer.Parent = Main
     SearchContainer.BackgroundColor3 = Scheme.MainColor
     SearchContainer.BackgroundTransparency = 0
-    SearchContainer.Position = UDim2.new(0.24, 0, 0.025, 0) -- Top area
+    SearchContainer.Position = UDim2.new(0.24, 0, 0.025, 0) 
     SearchContainer.Size = UDim2.new(0.65, 0, 0, 30)
     
     SearchCorner.CornerRadius = UDim.new(0, 4)
@@ -331,7 +326,7 @@ function library.new(arg1, arg2, arg3)
     SearchIcon.BackgroundTransparency = 1
     SearchIcon.Position = UDim2.new(0, 8, 0.5, -8)
     SearchIcon.Size = UDim2.new(0, 16, 0, 16)
-    SearchIcon.Image = "rbxassetid://6031154871" -- Search Icon
+    SearchIcon.Image = "rbxassetid://6031154871"
     SearchIcon.ImageColor3 = Scheme.PlaceholderColor
 
     SearchBox.Name = "SearchBox"
@@ -352,7 +347,7 @@ function library.new(arg1, arg2, arg3)
         text = text:lower()
         if not library.currentTab then return end
         
-        local currentTabFrame = library.currentTab[2] -- The ScrollingFrame
+        local currentTabFrame = library.currentTab[2] 
         
         for _, section in pairs(currentTabFrame:GetChildren()) do
             if section:IsA("Frame") and section.Name == "Section" then
@@ -362,14 +357,12 @@ function library.new(arg1, arg2, arg3)
                 if objs then
                     for _, item in pairs(objs:GetChildren()) do
                         if item:IsA("Frame") and item:FindFirstChildWhichIsA("GuiButton") then
-                            local btn = item:FindFirstChildWhichIsA("GuiButton") -- Check main button/label
+                            local btn = item:FindFirstChildWhichIsA("GuiButton") 
                             local labelText = ""
                             
-                            -- Attempt to find text content
                             if btn:IsA("TextButton") or btn:IsA("TextLabel") then
                                 labelText = btn.Text:lower()
                             end
-                            -- Handle labels inside buttons (like toggles)
                             if labelText == "" or labelText:match("^%s*$") then
                                 for _, inner in pairs(btn:GetChildren()) do
                                     if inner:IsA("TextLabel") then
@@ -389,13 +382,10 @@ function library.new(arg1, arg2, arg3)
                     end
                 end
                 
-                -- Update Section visibility/size based on search results
-                -- Note: The UpdateSize logic in Section handles internal resizing, 
-                -- but we might need to force it here or just hide the section if empty.
                 if text ~= "" then
                     section.Visible = hasVisibleItems
                 else
-                    section.Visible = true -- Reset
+                    section.Visible = true
                 end
             end
         end
@@ -405,15 +395,16 @@ function library.new(arg1, arg2, arg3)
         FilterElements(SearchBox.Text)
     end)
 
-    -- // [新增功能 2] 移动图标 (Drag Handle) // --
+    -- // [组件] 移动图标 (右上角) // --
     MoveIconBtn.Name = "MoveIcon"
     MoveIconBtn.Parent = Main
     MoveIconBtn.BackgroundTransparency = 1
-    MoveIconBtn.Position = UDim2.new(1, -35, 0.025, 0) -- Top Right
+    MoveIconBtn.Position = UDim2.new(1, -35, 0.025, 0) -- 右上角
     MoveIconBtn.Size = UDim2.new(0, 30, 0, 30)
-    MoveIconBtn.Image = "rbxassetid://6034509993" -- Cross arrows icon
+    MoveIconBtn.Image = "rbxassetid://6034509993" -- 十字箭头
     MoveIconBtn.ImageColor3 = Scheme.FontColor
     MoveIconBtn.ImageTransparency = 0.5
+    MoveIconBtn.ZIndex = 50 -- 确保在最上层
     
     MoveIconBtn.MouseEnter:Connect(function()
         MoveIconBtn.ImageTransparency = 0
@@ -422,18 +413,33 @@ function library.new(arg1, arg2, arg3)
         MoveIconBtn.ImageTransparency = 0.5
     end)
 
-    -- // [新增功能 3] 调整大小手柄 (Resize Handle) // --
+    -- // [组件] 调整大小手柄 (右下角) // --
     ResizeHandle.Name = "ResizeHandle"
     ResizeHandle.Parent = Main
     ResizeHandle.BackgroundTransparency = 1
     ResizeHandle.AnchorPoint = Vector2.new(1, 1)
-    ResizeHandle.Position = UDim2.new(1, -2, 1, -2) -- Bottom Right
+    ResizeHandle.Position = UDim2.new(1, -2, 1, -2) -- 右下角
     ResizeHandle.Size = UDim2.new(0, 20, 0, 20)
-    ResizeHandle.Image = "rbxassetid://6031097225" -- Diagonal resize icon
+    ResizeHandle.Image = "rbxassetid://6031097225" -- 斜向箭头
     ResizeHandle.ImageColor3 = Scheme.FontColor
     ResizeHandle.ImageTransparency = 0.5
+    ResizeHandle.ZIndex = 50 -- 确保在最上层
     
     MakeResizable(Main, ResizeHandle)
+
+    -- // [新增] 版本号 (底部) // --
+    VersionLabel.Name = "VersionLabel"
+    VersionLabel.Parent = Main
+    VersionLabel.BackgroundTransparency = 1
+    VersionLabel.Position = UDim2.new(0, 0, 1, -20) -- 底部位置
+    VersionLabel.Size = UDim2.new(1, 0, 0, 20)
+    VersionLabel.Font = Scheme.Font
+    VersionLabel.Text = "version: example"
+    VersionLabel.TextColor3 = Scheme.PlaceholderColor
+    VersionLabel.TextSize = 12
+    VersionLabel.TextTransparency = 0.5
+    VersionLabel.TextXAlignment = Enum.TextXAlignment.Center
+    VersionLabel.ZIndex = 10
 
 	TabBtnsL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		TabBtns.CanvasSize = UDim2.new(0, 0, 0, TabBtnsL.AbsoluteContentSize.Y + 18)
@@ -525,7 +531,7 @@ function library.new(arg1, arg2, arg3)
 		
 		TabBtn.MouseButton1Click:Connect(function()
 			spawn(function()
-				-- Ripple(TabBtn) -- Removed Ripple for cleaner Obsidian feel
+				-- Ripple(TabBtn) 
 			end)
 			switchTab({ TabIco, Tab })
 		end)
@@ -585,7 +591,7 @@ function library.new(arg1, arg2, arg3)
 			SectionOpen.Size = UDim2.new(0, 26, 0, 26)
 			SectionOpen.Image = "http://www.roblox.com/asset/?id=6031302934"
             SectionOpen.ImageColor3 = Scheme.FontColor
-            SectionOpen.Visible = false -- Hidden to match simpler style, functionality remains
+            SectionOpen.Visible = false 
 			
 			SectionOpened.Name = "SectionOpened"
 			SectionOpened.Parent = SectionOpen
@@ -600,7 +606,7 @@ function library.new(arg1, arg2, arg3)
 			SectionToggle.Parent = Section
 			SectionToggle.BackgroundTransparency = 1
 			SectionToggle.BorderSizePixel = 0
-			SectionToggle.Size = UDim2.new(1, 0, 0, 36) -- Cover whole header
+			SectionToggle.Size = UDim2.new(1, 0, 0, 36) 
 			
 			Objs.Name = "Objs"
 			Objs.Parent = Section
@@ -615,12 +621,12 @@ function library.new(arg1, arg2, arg3)
 			ObjsL.SortOrder = Enum.SortOrder.LayoutOrder
 			ObjsL.Padding = UDim.new(0, 8)
 			
-			local open = true -- Default open for cleaner look
+			local open = true 
 			if TabVal == false then open = false end
 
 			local function UpdateSize()
 				if not open then return end
-                -- Calculate size based on VISIBLE children only (search filter support)
+                -- Calculate size based on VISIBLE children only
                 local contentHeight = 0
                 for _, child in pairs(Objs:GetChildren()) do
                     if child:IsA("Frame") and child.Visible then
@@ -636,7 +642,6 @@ function library.new(arg1, arg2, arg3)
 			
 			SectionToggle.MouseButton1Click:Connect(function()
 				open = not open
-                -- If closing, size is 36. If opening, calculate size.
                 if open then
                     UpdateSize()
                 else
@@ -645,7 +650,6 @@ function library.new(arg1, arg2, arg3)
 			end)
 			
 			ObjsL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(UpdateSize)
-            -- Also connect to Visibility changes of children for the Search function
             Objs.ChildAdded:Connect(function(child)
                 child:GetPropertyChangedSignal("Visible"):Connect(UpdateSize)
             end)
@@ -664,9 +668,8 @@ function library.new(arg1, arg2, arg3)
 				BtnModule.BackgroundTransparency = 1.000
 				BtnModule.BorderSizePixel = 0
 				BtnModule.Position = UDim2.new(0, 0, 0, 0)
-				BtnModule.Size = UDim2.new(0, 428, 0, 30) -- Compact height
+				BtnModule.Size = UDim2.new(0, 428, 0, 30) 
 				
-				-- // BUTTON STYLING // --
 				Btn.Name = "Btn"
 				Btn.Parent = BtnModule
 				Btn.BackgroundColor3 = Scheme.MainColor
@@ -679,7 +682,7 @@ function library.new(arg1, arg2, arg3)
 				Btn.TextColor3 = Scheme.FontColor
 				Btn.TextSize = 14.000
 				Btn.TextTransparency = 0
-				Btn.TextXAlignment = Enum.TextXAlignment.Center -- Centered text
+				Btn.TextXAlignment = Enum.TextXAlignment.Center 
                 AddOutline(Btn, 4)
 				
 				BtnC.CornerRadius = UDim.new(0, 4)
@@ -687,7 +690,6 @@ function library.new(arg1, arg2, arg3)
 				BtnC.Parent = Btn
 				
 				Btn.MouseButton1Click:Connect(function()
-                    -- Simple flash effect
                     local oldColor = Btn.BackgroundColor3
                     Btn.BackgroundColor3 = Scheme.AccentColor
                     wait(0.1)
@@ -752,7 +754,6 @@ function library.new(arg1, arg2, arg3)
 				ToggleModule.Position = UDim2.new(0, 0, 0, 0)
 				ToggleModule.Size = UDim2.new(0, 428, 0, 30)
 				
-				-- // TOGGLE STYLING // --
 				ToggleBtn.Name = "ToggleBtn"
 				ToggleBtn.Parent = ToggleModule
 				ToggleBtn.BackgroundColor3 = Scheme.MainColor
@@ -774,7 +775,7 @@ function library.new(arg1, arg2, arg3)
 				
 				ToggleDisable.Name = "ToggleDisable"
 				ToggleDisable.Parent = ToggleBtn
-				ToggleDisable.BackgroundColor3 = Scheme.BackgroundColor -- Inner track color
+				ToggleDisable.BackgroundColor3 = Scheme.BackgroundColor
 				ToggleDisable.BackgroundTransparency = 0
 				ToggleDisable.BorderSizePixel = 0
 				ToggleDisable.Position = UDim2.new(0.9, 0, 0.5, -9)
@@ -784,7 +785,7 @@ function library.new(arg1, arg2, arg3)
 				ToggleSwitch.Name = "ToggleSwitch"
 				ToggleSwitch.Parent = ToggleDisable
 				ToggleSwitch.BackgroundColor3 = Scheme.FontColor
-				ToggleSwitch.Size = UDim2.new(0, 18, 0, 18) -- Circle
+				ToggleSwitch.Size = UDim2.new(0, 18, 0, 18)
 				
 				ToggleSwitchC.CornerRadius = UDim.new(1, 0)
 				ToggleSwitchC.Name = "ToggleSwitchC"
@@ -1127,7 +1128,7 @@ function library.new(arg1, arg2, arg3)
 				SliderBar.Name = "SliderBar"
 				SliderBar.Parent = SliderBack
 				SliderBar.AnchorPoint = Vector2.new(0, 0.5)
-				SliderBar.BackgroundColor3 = Scheme.OutlineColor -- Track Color
+				SliderBar.BackgroundColor3 = Scheme.OutlineColor 
 				SliderBar.BackgroundTransparency = 0
 				SliderBar.BorderSizePixel = 0
 				SliderBar.Position = UDim2.new(0.369000018, 40, 0.5, 0)
@@ -1139,7 +1140,7 @@ function library.new(arg1, arg2, arg3)
 				
 				SliderPart.Name = "SliderPart"
 				SliderPart.Parent = SliderBar
-				SliderPart.BackgroundColor3 = Scheme.AccentColor -- Fill Color
+				SliderPart.BackgroundColor3 = Scheme.AccentColor 
 				SliderPart.Size = UDim2.new(0, 54, 0, 8)
 				
 				SliderPartC.CornerRadius = UDim.new(0, 4)
@@ -1427,7 +1428,7 @@ function library.new(arg1, arg2, arg3)
 					DropdownModule.Size =
 						UDim2.new(0, 428, 0, (open and DropdownModuleL.AbsoluteContentSize.Y + 4 or 30))
                     
-                    UpdateSize() -- Update section size when dropdown opens/closes
+                    UpdateSize() 
 				end
 				
 				DropdownOpen.MouseButton1Click:Connect(ToggleDropVis)
@@ -1451,7 +1452,7 @@ function library.new(arg1, arg2, arg3)
 						return
 					end
 					DropdownModule.Size = UDim2.new(0, 428, 0, (DropdownModuleL.AbsoluteContentSize.Y + 4))
-                    UpdateSize() -- Update section size if content changes
+                    UpdateSize() 
 				end)
 				
 				local funcs = {}
@@ -1462,7 +1463,7 @@ function library.new(arg1, arg2, arg3)
 					
 					Option.Name = "Option_" .. option
 					Option.Parent = DropdownModule
-					Option.BackgroundColor3 = Scheme.BackgroundColor -- Slightly darker for options
+					Option.BackgroundColor3 = Scheme.BackgroundColor 
 					Option.BackgroundTransparency = 0
 					Option.BorderSizePixel = 0
 					Option.Position = UDim2.new(0, 0, 0.328125, 0)
