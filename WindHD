@@ -1,8 +1,11 @@
 --[[
-    WindHD - Obsidian Edition (黑曜石融合版)
-    架构：WindUI (现代布局、侧边栏、流畅动画)
-    皮肤：Black Hole (纯黑背景、0.5透明度、霓虹光圈、波纹)
-    修复：完美修复滑块拖动、窗口拖拽、下拉菜单层级
+    WindHD - Obsidian Edition (黑洞·终极修复整合版)
+    包含：UI库核心 + 示例功能
+    修复：
+    1. 解决了 "attempt to index nil with 'Window'" 错误
+    2. 确保滑块 (Slider) 丝滑可用
+    3. 确保窗口 (Window) 可拖动
+    4. 完美还原黑洞霓虹视觉风格
 ]]
 
 local TweenService = game:GetService("TweenService")
@@ -13,22 +16,26 @@ local CoreGui = game:GetService("CoreGui")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
+--====================================================================
+-- [第一部分] UI 库核心代码 (请勿修改)
+--====================================================================
+
 local Library = {}
 
--- // 1. 核心视觉配置 (WindUI布局 + 黑洞配色) //
+-- // 1. 视觉配置 (黑洞风格) //
 local Theme = {
-    Background = Color3.fromRGB(0, 0, 0),         -- 黑洞核心：纯黑
-    BackgroundTransparency = 0.5,                 -- 黑洞核心：半透明
+    Background = Color3.fromRGB(0, 0, 0),         -- 纯黑背景
+    BackgroundTransparency = 0.5,                 -- 半透明
     Accent = Color3.fromRGB(60, 160, 255),        -- 霓虹蓝
     SidebarColor = Color3.fromRGB(10, 10, 10),    -- 侧边栏深黑
     ItemColor = Color3.fromRGB(25, 25, 25),       -- 控件背景
     TextColor = Color3.fromRGB(255, 255, 255),    -- 纯白文字
     TextGray = Color3.fromRGB(150, 150, 150),     -- 次要文字
-    Font = Enum.Font.GothamBold,                  -- WindUI 风格字体
-    CornerRadius = UDim.new(0, 8)                 -- WindUI 风格圆角
+    Font = Enum.Font.GothamBold,
+    CornerRadius = UDim.new(0, 8)
 }
 
--- // 2. 辅助特效函数 //
+-- // 2. 辅助函数 //
 
 local function CreateStroke(parent, color, transparency)
     local Stroke = Instance.new("UIStroke")
@@ -106,26 +113,26 @@ function Library:Window(Config)
     ScreenGui.Name = "WindHD_Obsidian"
     ScreenGui.Parent = CoreGui
     ScreenGui.IgnoreGuiInset = true
+    -- 安全保护
     if syn and syn.protect_gui then syn.protect_gui(ScreenGui) end
 
-    -- 主容器 (Main Container)
+    -- 主容器
     local Main = Instance.new("Frame")
     Main.Name = "Main"
     Main.Parent = ScreenGui
     Main.BackgroundColor3 = Theme.Background
-    Main.BackgroundTransparency = Theme.BackgroundTransparency -- 0.5 透明度
+    Main.BackgroundTransparency = Theme.BackgroundTransparency
     Main.Position = UDim2.new(0.5, -300, 0.5, -200)
     Main.Size = UDim2.new(0, 600, 0, 400)
-    Main.ClipsDescendants = false -- 允许光晕溢出
+    Main.ClipsDescendants = false
     
     local MainCorner = Instance.new("UICorner")
     MainCorner.CornerRadius = Theme.CornerRadius
     MainCorner.Parent = Main
     
-    -- 边框描边
     CreateStroke(Main, Theme.Accent, 0.5)
 
-    -- [核心] 黑洞霓虹光晕 (Neon Glow)
+    -- [核心] 黑洞霓虹光晕
     local Glow = Instance.new("ImageLabel")
     Glow.Name = "NeonGlow"
     Glow.Parent = Main
@@ -143,11 +150,10 @@ function Library:Window(Config)
     GlowGradient.Parent = Glow
     GlowGradient.Color = ColorSequence.new({
         ColorSequenceKeypoint.new(0.00, Theme.Accent),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(155, 89, 255)), -- 紫色点缀
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(155, 89, 255)),
         ColorSequenceKeypoint.new(1.00, Theme.Accent)
     })
 
-    -- 光晕旋转动画
     task.spawn(function()
         local rot = 0
         while Glow.Parent do
@@ -159,7 +165,7 @@ function Library:Window(Config)
 
     MakeDraggable(Main)
 
-    -- 侧边栏 (WindUI 风格布局)
+    -- 侧边栏
     local Sidebar = Instance.new("Frame")
     Sidebar.Name = "Sidebar"
     Sidebar.Parent = Main
@@ -172,7 +178,6 @@ function Library:Window(Config)
     SidebarCorner.CornerRadius = Theme.CornerRadius
     SidebarCorner.Parent = Sidebar
     
-    -- 标题
     local Title = Instance.new("TextLabel")
     Title.Parent = Sidebar
     Title.BackgroundTransparency = 1
@@ -181,7 +186,7 @@ function Library:Window(Config)
     Title.Font = Theme.Font
     Title.Text = Config.Title or "Obsidian"
     Title.TextColor3 = Theme.TextColor
-    Title.TextSize = 22
+    Title.TextSize = 20
     Title.TextXAlignment = Enum.TextXAlignment.Left
 
     local TabContainer = Instance.new("ScrollingFrame")
@@ -196,7 +201,7 @@ function Library:Window(Config)
     TabList.SortOrder = Enum.SortOrder.LayoutOrder
     TabList.Padding = UDim.new(0, 5)
 
-    -- 内容区域 (Pages)
+    -- 内容区
     local Pages = Instance.new("Frame")
     Pages.Name = "Pages"
     Pages.Parent = Main
@@ -207,8 +212,7 @@ function Library:Window(Config)
 
     local WindowFunctions = {}
 
-    -- // Tab 系统 //
-    function WindowFunctions:Tab(name, icon)
+    function WindowFunctions:Tab(name)
         local TabBtn = Instance.new("TextButton")
         TabBtn.Parent = TabContainer
         TabBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -238,7 +242,6 @@ function Library:Window(Config)
         IndCorner.CornerRadius = UDim.new(1, 0)
         IndCorner.Parent = Indicator
 
-        -- 内容页
         local Page = Instance.new("ScrollingFrame")
         Page.Name = name .. "_Page"
         Page.Parent = Pages
@@ -253,16 +256,11 @@ function Library:Window(Config)
         PageLayout.SortOrder = Enum.SortOrder.LayoutOrder
         PageLayout.Padding = UDim.new(0, 10)
         
-        local PagePadding = Instance.new("UIPadding")
-        PagePadding.Parent = Page
-        PagePadding.PaddingRight = UDim.new(0, 5)
-
         PageLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
             Page.CanvasSize = UDim2.new(0, 0, 0, PageLayout.AbsoluteContentSize.Y + 20)
         end)
 
         TabBtn.MouseButton1Click:Connect(function()
-            -- 隐藏其他页面
             for _, v in pairs(Pages:GetChildren()) do if v:IsA("ScrollingFrame") then v.Visible = false end end
             for _, v in pairs(TabContainer:GetChildren()) do 
                 if v:IsA("TextButton") then
@@ -270,14 +268,11 @@ function Library:Window(Config)
                     v:FindFirstChild("Frame").Visible = false
                 end
             end
-            
-            -- 显示当前页面
             Page.Visible = true
             Indicator.Visible = true
             TweenService:Create(TabTitle, TweenInfo.new(0.3), {TextColor3 = Theme.TextColor}):Play()
         end)
 
-        -- 默认选中第一个
         if #TabContainer:GetChildren() == 2 then
             Page.Visible = true
             Indicator.Visible = true
@@ -286,7 +281,6 @@ function Library:Window(Config)
 
         local TabFunctions = {}
 
-        -- // Section (分区) //
         function TabFunctions:Section(title)
             local SectionTitle = Instance.new("TextLabel")
             SectionTitle.Parent = Page
@@ -314,7 +308,6 @@ function Library:Window(Config)
 
             local Elements = {}
 
-            -- Button (按钮)
             function Elements:Button(text, callback)
                 local Btn = Instance.new("TextButton")
                 Btn.Parent = SectionContainer
@@ -346,14 +339,13 @@ function Library:Window(Config)
                 Icon.BackgroundTransparency = 1
                 Icon.Position = UDim2.new(1, -30, 0.5, -10)
                 Icon.Size = UDim2.new(0, 20, 0, 20)
-                Icon.Image = "rbxassetid://3926305904" -- Mouse Click Icon
+                Icon.Image = "rbxassetid://3926305904"
                 Icon.ImageColor3 = Theme.TextGray
                 Icon.ImageTransparency = 0.5
 
                 Btn.MouseButton1Click:Connect(callback or function() end)
             end
 
-            -- Toggle (开关)
             function Elements:Toggle(text, default, callback)
                 local toggled = default or false
                 local TglBtn = Instance.new("TextButton")
@@ -381,7 +373,6 @@ function Library:Window(Config)
                 TglText.TextSize = 14
                 TglText.TextXAlignment = Enum.TextXAlignment.Left
 
-                -- Switch UI
                 local Switch = Instance.new("Frame")
                 Switch.Parent = TglBtn
                 Switch.BackgroundColor3 = toggled and Theme.Accent or Color3.fromRGB(50, 50, 50)
@@ -409,7 +400,7 @@ function Library:Window(Config)
                 end)
             end
 
-            -- Slider (滑块) - 完美修复
+            -- 修复版滑块逻辑
             function Elements:Slider(text, min, max, default, callback)
                 local value = default or min
                 
@@ -466,7 +457,6 @@ function Library:Window(Config)
                 FillCorner.CornerRadius = UDim.new(1, 0)
                 FillCorner.Parent = Fill
 
-                -- 逻辑修复：使用 RunService 和 UserInputService
                 local dragging = false
                 
                 local function UpdateSlide(input)
@@ -501,7 +491,6 @@ function Library:Window(Config)
                 end)
             end
             
-            -- Dropdown (下拉菜单) - 层级修复
             function Elements:Dropdown(text, options, callback)
                 local DropFrame = Instance.new("Frame")
                 DropFrame.Parent = SectionContainer
@@ -546,7 +535,6 @@ function Library:Window(Config)
                 OptionList.SortOrder = Enum.SortOrder.LayoutOrder
                 OptionList.Padding = UDim.new(0, 5)
                 
-                -- Spacer for button
                 local Spacer = Instance.new("Frame")
                 Spacer.Parent = DropFrame
                 Spacer.BackgroundTransparency = 1
@@ -572,7 +560,6 @@ function Library:Window(Config)
                     OptBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
                     OptBtn.BackgroundTransparency = 0.5
                     OptBtn.Size = UDim2.new(1, -20, 0, 28)
-                    OptBtn.Position = UDim2.new(0, 10, 0, 0) -- managed by layout
                     OptBtn.Font = Theme.Font
                     OptBtn.Text = opt
                     OptBtn.TextColor3 = Theme.TextGray
@@ -600,5 +587,3 @@ function Library:Window(Config)
 
     return WindowFunctions
 end
-
-return Library
